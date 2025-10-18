@@ -4,8 +4,10 @@ import { SlPlaylist } from "react-icons/sl";
 import { BsHearts } from "react-icons/bs";
 import { datacontext } from '../context/UserContext';
 
+
 function Card({name,image,singer,songindex}) {
     let{audioref, playingsong, playsong, pausesong, nextsong, previoussong, index,setindex}=useContext(datacontext)
+  
   return (
     <div className='w-[90%] h-[70px] md:h-[120px] bg-gray-800 rounded-lg  p-[5px] md:p-[10px] flex hover:bg-gray-900 transition-all'>
 
@@ -24,7 +26,9 @@ function Card({name,image,singer,songindex}) {
         {/* right div */}
         <div className='flex justify-center items-center gap-[20px] w-[20%] h-[100%] text-[15px]  md:text-[20px]'>
 
-         <div><SlPlaylist className='text-white text-[1.3em] cursor-pointer '/></div>
+         <div onClick={()=>{
+            dispatch(Addsong({name:name,image:image,singer:singer,songindex:songindex}))
+         }}> <SlPlaylist className='text-white text-[1.3em] cursor-pointer '/></div>
          <div><BsHearts className='text-white text-[1em]   cursor-pointer  '/></div>
 
         </div>

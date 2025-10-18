@@ -7,7 +7,7 @@ import { BsHearts } from "react-icons/bs";
 import {Link} from 'react-router-dom';
 function Navbar() {
   return (
-    <div className='w-full h-[100px] bg-black fixed  bottom-0  md:top-0 text-white flex justify-around md:justify-center items-center gap-[50px] p-[20px]'>
+    <div className='w-full h-[80px] bg-black fixed  bottom-0  md:top-0 text-white flex justify-around md:justify-center items-center gap-[50px] p-[20px] z-30 rounded-t-[30px]'>
     <Link to={"/"}><TiHome className='w-[28px] h-[28px]' /></Link>
     <Link to={"search"}><BsFillSearchHeartFill className='w-[28px] h-[28px]'/></Link>
     <Link to={"playlist"}><SlPlaylist className='w-[28px] h-[28px]'/></Link>

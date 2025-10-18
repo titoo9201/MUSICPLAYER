@@ -7,12 +7,14 @@ import { datacontext } from '../context/UserContext';
 import { TbMusicPause } from "react-icons/tb";
 import { GiWideArrowDunk } from "react-icons/gi";
 import Card from '../components/Card';
+import System from '../components/System';
 
 
 function Home() {
     let { audioref, playingsong, playsong, pausesong, nextsong, previoussong, index } = useContext(datacontext)
     // Renamed userange to range for clarity
     let [range, setRange] = useState(0)
+    let [arrow ,setarrow] = useState(false)
 
     // Moved handlerange function outside of useEffect
     function handlerange(e) {
@@ -39,10 +41,14 @@ function Home() {
         }
     }, [audioref]) // Include audioref in the dependency array
     
-    return (
-        <div className='w-full h-[100vh] bg-black flex relative'>
-           <GiWideArrowDunk  className='text-white top-[30px] left-[10px]   absolute'/>
-          {/* left */}
+    return ( 
+
+      // main
+        <div className='w-full h-[100vh] bg-black flex relative overflow-hidden'>
+           <GiWideArrowDunk  className='text-white top-[30px] left-[10px] text-[30px] md:hidden  absolute' onClick={()=>setarrow(prev=>!prev)}/>
+           {!arrow?<>
+           {/* left */}
+
             <div className=' w-full md:w-[50%] h-full flex justify-start items-center pt-[20px] md:pt-[120px] flex-col gap-[30px]'>
                
                
@@ -77,13 +83,32 @@ function Home() {
                     <IoPlaySkipForwardCircleSharp className='w-[28px] h-[28px] hover:text-gray-600 transition-all cursor-pointer' onClick={()=>nextsong()} />
                 </div>
             </div>
-             {/* right */}
+          {/* left end */}
+
+
+            {/* right */}
+
             <div className=' w-[100%] md:w-[50%] h-full hidden md:flex flex-col gap-5 overflow-auto pb-[20px] pt-[120px]' >
-             {/* <Card/> */}
+          
              {songsData.map((song)=>(
               <Card name={song.name} image={song.image} singer={song.singer} songindex={song.id-1}/>
              ))}
             </div>
+            {/* right start */}
+           </>:
+
+          //  right start
+            <div className=' w-[100%] md:w-[50%] items-center flex flex-col gap-5 overflow-auto pb-[70px] mt-[70px] relative h-[70%]' >
+   
+             <System/>
+             {songsData.map((song)=>(
+              <Card name={song.name} image={song.image} singer={song.singer} songindex={song.id-1}/>
+             ))}
+            </div>
+            // right end
+           }
+          
+
         </div>
     )
 }
