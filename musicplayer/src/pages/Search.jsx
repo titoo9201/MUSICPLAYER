@@ -9,7 +9,7 @@ function Search() {
   let[input,setinput]=useState("")
   let[newlist,setnewlist]=useState([])
   useEffect(()=>{
-let songfilter=songsData.filter((song)=>(song.name.toLowerCase().includes(input)||(song.singer.toLowerCase().includes(input))))
+let songfilter=songsData.filter((song)=>(song.name.toLowerCase().includes(input)||(song.singer.toLowerCase().includes(input)) || (song.singer.includes(input)) || (song.name.includes(input))||(song.singer.toUpperCase().includes(input)) || (song.name.toUpperCase() .includes(input)) ))
 
 setnewlist(songfilter)
 

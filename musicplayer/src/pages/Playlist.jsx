@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 
 function Playlist() {
-  let songs=useSelector(state=>state.Playlist)
+  let songs=useSelector(state=>state.playlist)
  
   
   return (
